@@ -65,7 +65,6 @@ base_packages=(
     "unclutter-xfixes"
     "isync"
     "trayer"
-    "xenity"
     "xsecurelock"
     "xss-lock"
     "udiskie"

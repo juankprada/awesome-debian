@@ -33,12 +33,12 @@ git clone https://github.com/juankprada/dotfiles ~/dotfiles
 clear
 
 # Make the setup.sh executable
-chmod +x ~/awesome-debian/scriptssetup.sh
+chmod +x ~/awesome-debian/scripts/setup.sh
 
 # Run Setup script first
-
+echo "Running setup script..."
 bash ~/awesome-debian/scripts/setup.sh
 
-clear
+
 
 printf "\e[1;32mYou can now reboot! Thanks you.\e[0m\n"
