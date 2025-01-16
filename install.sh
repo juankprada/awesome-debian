@@ -27,7 +27,7 @@ echo "Git is installed. Continuing with the setup..."
 
 
 
-git clone https://github.com/juankprada/awesome-debian ~/aweseome-debian
+git clone https://github.com/juankprada/awesome-debian ~/awesome-debian
 git clone https://github.com/juankprada/dotfiles ~/dotfiles
 
 clear
