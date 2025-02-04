@@ -20,7 +20,7 @@ base_packages=(
     "build-essential"
     "git"
     "lxpolkit"
-    "network-manager "
+    "network-manager"
     "network-manager-gnome"
     "thunar"
     "thunar-archive-plugin"
@@ -45,10 +45,9 @@ base_packages=(
     "fonts-font-awesome"
     "fonts-terminus"
     "fonts-firacode"
-    "fonts-liberation2" 
-    "fonts-ubuntu" 
-    "papirus-icon-theme" 
-    "fonts-cascadia-code"
+    "fonts-liberation2"
+    "fonts-ubuntu"
+    "papirus-icon-theme"
     "exa"
     "shutter"
     "rofi"
@@ -70,11 +69,13 @@ base_packages=(
     "udiskie"
     "caffeine"
     "playerctl"
-    "ddcutil"    "xssproxy"
+    "ddcutil"
+    "xssproxy"
     "suckless-tools"
     # Microcode for Intel/AMD 
     "amd64-microcode"
-    # "intel-microcode"
+    #"intel-microcode"
+    "ibus-mozc"
 )
 
 build_essential_tools=(
@@ -158,6 +159,7 @@ core_terminal_tools=(
 
 recommended_apps=(
    "borgbackup"
+   "vorta"
    "btrfsmaintenance"
    "freefilesync"
    "syncthing"
@@ -168,7 +170,7 @@ recommended_apps=(
    "xiccd"
    "colord-gtk-utils"
    "colord-sensor-argyll"
-   "flameshot # Better Screen shots"
+   "flameshot"
    "audacity"
    "flatpak"
    "fontforge"
@@ -183,6 +185,7 @@ recommended_apps=(
    "yagf"
    "zim"
    "qimgv"
+   "qt5-image-formats-plugins" # Needed by qimgv to open tif files :S
    "filezilla"
    "treesheets"
    "python-is-python3"
@@ -199,19 +202,11 @@ printing_apps=(
     "xsane-common"
 )
 
-xmonad_deps=(
-    "libx11-dev"
-    "libxft-dev"
-    "libxinerama-dev"
-    "libxrandr-dev"
-    "libxss-dev"
-    "haskell-stack"
-)
 
 multimedia_apps=(
     "mpv"
     "mpd"
-    "ncmpp"
+    "ncmpcpp"
     "mkvtoolnix-gui"
     "kdenlive"
     "obs-studio"
@@ -219,10 +214,10 @@ multimedia_apps=(
 
 utilities=(
     "gparted"
-    "gnome-disk-utility" 
-    "neofetch" 
-    "nitrogen" 
-    "numlockx" 
+    "gnome-disk-utility"
+    "neofetch"
+    "nitrogen"
+    "numlockx"
     "galculator"
     "cpu-x"
     "udns-utils"
@@ -231,7 +226,6 @@ utilities=(
     "tree"
     "btop"
     "brightnessctl"
-    
 )
 
 install_packages() {
@@ -265,7 +259,6 @@ install_packages "${build_essential_tools[@]}"
 install_packages "${core_terminal_tools[@]}"
 install_packages "${recommended_apps[@]}"
 install_packages "${printing_apps[@]}"
-install_packages "${xmonad_deps[@]}"
 install_packages "${multimedia_apps[@]}"
 install_packages "${utilities[@]}"
 
@@ -279,14 +272,28 @@ sudo systemctl enable cups
 
 
 # Install Custom Picom
-#bash ~/awesome-debian/scripts/picom.sh
+bash ./scripts/build_picom.sh
 
 # Install Xmonad
-#bash ~/awesome-debian/scripts/xmonad.sh
+bash ./scripts/install_xmonad.sh
 
 # Install Emacs
+bash ./scripts/build_emacs/sh
 
 # Install Input Remapper
+bash ./scripts/input_remapper.sh
+
+# Install Art studio
+bash ./scripts/install_art_studio.sh
+
+# Firefox
+bash ./scripts/install_firfox.sh
+
+# Fonts
+bash ./scripts/install_fonts.sh
+
+# Printer
+bash ./scripts/printer.sh
 
 # Install nvidia drivers
 
