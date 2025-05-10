@@ -272,29 +272,32 @@ sudo systemctl enable cups
 
 
 # Install Custom Picom
-bash ./scripts/build_picom.sh
+bash ./build_picom.sh
 
 # Install Xmonad
-bash ./scripts/install_xmonad.sh
+bash ./install_xmonad.sh
 
 # Install Emacs
-bash ./scripts/build_emacs/sh
+bash ./build_emacs.sh
 
 # Install Input Remapper
-bash ./scripts/input_remapper.sh
+bash ./input_remapper.sh
 
 # Install Art studio
-bash ./scripts/install_art_studio.sh
+bash ./install_art_studio.sh
 
 # Firefox
-bash ./scripts/install_firfox.sh
+bash ./install_firfox.sh
 
 # Fonts
-bash ./scripts/install_fonts.sh
+bash ./install_fonts.sh
 
 # Printer
-bash ./scripts/printer.sh
+bash ./printer.sh
 
+
+# Fix Numphy
+bash ./fix_numphy.sh
 # Install nvidia drivers
 
 # Setup Starship

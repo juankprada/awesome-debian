@@ -5,9 +5,9 @@ local_repo=$HOME/Development/emacs
 check_emacs_cloned() {
     if [ -d $local_repo ]; then
 	echo 'Emacs repository already exists at $(local_repo)'
-        return 0
-    else
         return 1
+    else
+        return 0
     fi
 }
 

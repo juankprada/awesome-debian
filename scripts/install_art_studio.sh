@@ -15,10 +15,10 @@ mkdir -p ~/Applications
 # Download Krita
 echo "Downloading Krita..."
 
-if check_file_installed "krita-5.2.6-x86_64.appimage"; then
+if check_file_installed "krita-5.2.9-x86_64.appimage"; then
     echo "Krita is already installed. Skipping."
 else
-    wget -q --show-progress "https://download.kde.org/stable/krita/5.2.6/krita-5.2.6-x86_64.appimage" -P ~/Applications/
+    wget -q --show-progress "https://download.kde.org/stable/krita/5.2.9/krita-5.2.9-x86_64.appimage" -P ~/Applications/
     if [ $? -ne 0 ]; then
 	echo "Failed to download Krita"
 	continue
