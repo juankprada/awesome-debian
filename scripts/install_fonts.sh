@@ -21,15 +21,16 @@ fonts=(
     "CascadiaMono"
     "CascadiaCode"
     "DepartureMono"
-    "FiraCode"  
-    "Hack"  
+    "FiraCode"
+    "Hack"
+    "Iosevka"
     "Inconsolata"
-    "JetBrainsMono" 
+    "JetBrainsMono"
     "Meslo"
-    "Mononoki" 
-    "RobotoMono" 
-    "SourceCodePro" 
-    # Add additional fonts here if needed
+    "Mononoki"
+    "RobotoMono"
+    "SourceCodePro"
+	"NerdFontsSymbolsOnly"
 )
 
 # Function to check if font directory exists
@@ -50,20 +51,20 @@ do
         echo "Skipping installation of font: $font"
         continue  # Skip installation if font is already installed
     fi
-    
+
     echo "Installing font: $font"
     wget -q --show-progress "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/$font.zip" -P /tmp
     if [ $? -ne 0 ]; then
         echo "Failed to download font: $font"
         continue
     fi
-    
+
     unzip -q /tmp/$font.zip -d ~/.local/share/fonts/$font/
     if [ $? -ne 0 ]; then
         echo "Failed to extract font: $font"
         continue
     fi
-    
+
     rm /tmp/$font.zip
 done
 
