@@ -325,6 +325,9 @@ install_packages "${core_terminal_tools[@]}"
 install_packages "${recommended_apps[@]}"
 install_packages "${printing_apps[@]}"
 install_packages "${multimedia_apps[@]}"
+
+sudo dpkg --add-architecture i386
+
 install_packages "${games[@]}"
 install_packages "${art[@]}"
 
