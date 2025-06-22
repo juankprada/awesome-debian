@@ -47,7 +47,7 @@ base_packages=(
     "fonts-liberation2"
     "fonts-ubuntu"
     "papirus-icon-theme"
-    "exa"
+    
     "shutter"
     "rofi"
     "dunst"
@@ -147,7 +147,6 @@ core_terminal_tools=(
     "btop"
     "coreutils"
     "curl"
-    "exa"
 	"eza"
     "fd-find"
     "fzf"
