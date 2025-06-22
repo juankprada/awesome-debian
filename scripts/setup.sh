@@ -341,28 +341,28 @@ sudo systemctl enable cups
 
 
 # Install Custom Picom
-bash ./build_picom.sh
+bash ./scripts/build_picom.sh
 
 # Instal Alacritty
-bash ./install_alacritty.sh 
+bash ./scripts/install_alacritty.sh 
 
 # Install Xmonad
-bash ./install_xmonad.sh
+bash ./scripts/install_xmonad.sh
 
 # Install Emacs
-bash ./build_emacs.sh
+bash ./scripts/build_emacs.sh
 
 # Install Input Remapper
-bash ./input_remapper.sh
+bash ./scripts/input_remapper.sh
 
 # Install Art studio
-bash ./install_art_studio.sh
+bash ./scripts/install_art_studio.sh
 
 # Firefox
-bash ./install_firfox.sh
+bash ./scripts/install_firfox.sh
 
 # Fonts
-bash ./install_fonts.sh
+bash ./scripts/install_fonts.sh
 
 # Printer
 bash ./printer.sh
@@ -371,10 +371,10 @@ bash ./printer.sh
 bash ./fix_numphy.sh
 
 # Adds extra thumbnails for Krita and PSD
-bash ./extra_thumbnails.sh 
+bash ./scripts/extra_thumbnails.sh 
 
 # MPD Setup
-bash ./mpd_setup.sh 
+bash ./scripts/mpd_setup.sh 
 
 # Install nvidia drivers
 bah ./instal_nvidia.sh
@@ -396,7 +396,7 @@ bash ./install_flatpaks.sh
 xdg-user-dirs-update
 
 # Clone and Stow dotfiles
-bash ./stow_dotfiles.sh
+bash ./scripts/stow_dotfiles.sh
 
 
 # Clone and Install Keys
