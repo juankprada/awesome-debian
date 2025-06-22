@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
 
 base_packages=(
     "xorg"
@@ -75,7 +74,21 @@ base_packages=(
     # Microcode for Intel/AMD 
     "amd64-microcode"
     #"intel-microcode"
-    "ibus-mozc"
+    "zram-tools"
+	"wireless-tools"
+	"wpasupplicant"
+	"power-profiles-daemon"
+	"nvidia-detect"
+	"gtk2-engines"
+	"firmware-amd-graphics"
+	"firmware-misc-nonfree"
+	"firmware-realtek"
+	"dbus"
+	"cron"
+	"cron-daemon-common"
+	"arc-theme"
+	"arc-kde"
+	"starship"
 )
 
 build_essential_tools=(
@@ -120,77 +133,89 @@ build_essential_tools=(
     "binutils"
     "gcc"
     "x11-xserver-utils"
+	"gdb"
+	"g++"
+	"clang-19"
+	"clang-format"
+	"clang-format-19"
+	"clangd"
+	"langd-19"
 )
 
 core_terminal_tools=(
-     "kitty"
-     "alacritty"
-     "bat"
-     "btop"
-     "coreutils"
-     "curl"
-     "exa"
-     "fd-find"
-     "fzf"
-     "gettext"
-     "git"
-     "jq"
-     "libtool"
-     "lsof"
-     "make"
-     "moreutils"
-     "optipng"
-     "pango1.0-tools"
-     "plocate"
-     "renameutils"
-     "ripgrep"
-     "rsync"
-     "sed"
-     "sshpass"
-     "stow"
-     "tldr"
-     "tmux"
-     "xclip"
-     "zenity"
-     "zoxide"
-     "trash-cli"
-     "btrbk"
+    "bat"
+    "btop"
+    "coreutils"
+    "curl"
+    "exa"
+	"eza"
+    "fd-find"
+    "fzf"
+    "gettext"
+    "git"
+    "jq"
+    "libtool"
+    "lsof"
+    "make"
+    "moreutils"
+    "optipng"
+    "pango1.0-tools"
+    "plocate"
+    "renameutils"
+    "ripgrep"
+    "rsync"
+    "sed"
+    "sshpass"
+    "stow"
+    "tldr"
+    "tmux"
+    "xclip"
+    "zenity"
+    "zoxide"
+    "trash-cli"
+    "btrbk"
+	"rfkill"
 )
 
 recommended_apps=(
-   "borgbackup"
-   "vorta"
-   "btrfsmaintenance"
-   "freefilesync"
-   "syncthing"
-   "samba"
-   "displaycal"
-   "dispcalgui"
-   "argyll"
-   "xiccd"
-   "colord-gtk-utils"
-   "colord-sensor-argyll"
-   "flameshot"
-   "audacity"
-   "flatpak"
-   "fontforge"
-   "fontforge-common"
-   "fontforge-extras"
-   "gimp"
-   "hugin"
-   "peek"
-   "xournalpp"
-   "firewalld"
-   "firewall-config"
-   "yagf"
-   "zim"
-   "qimgv"
-   "qt5-image-formats-plugins" # Needed by qimgv to open tif files :S
-   "filezilla"
-   "treesheets"
-   "python-is-python3"
-   "lightdm"
-   "lightdm-gtk-greeter-settings"
+	"borgbackup"
+	"vorta"
+	"btrfsmaintenance"
+	"freefilesync"
+	"syncthing"
+	"samba"
+	"displaycal"
+	"dispcalgui"
+	"argyll"
+	"xiccd"
+	"colord-gtk-utils"
+	"colord-sensor-argyll"
+	"flameshot"
+	"audacity"
+	"flatpak"
+	"fontforge"
+	"fontforge-common"
+	"fontforge-extras"
+	"gimp"
+	"hugin"
+	"peek"
+	"xournalpp"
+	"firewalld"
+	"firewall-config"
+	"yagf"
+	"zim"
+	"qimgv"
+	"qt5-image-formats-plugins" # Needed by qimgv to open tif files :S
+	"filezilla"
+	"treesheets"
+	"python-is-python3"
+	"lightdm"
+	"lightdm-gtk-greeter-settings"
+	"i3"
+	"fcitx5"
+	"fcitx5-frontend-gtk3"
+	"fcitx5-modules"
+	"fcitx5-mozc"
 )
 
 
@@ -226,21 +251,62 @@ utilities=(
     "tree"
     "btop"
     "brightnessctl"
+	"vulkan-tools"
+	"unrar"
+	"yt-dlp"
+	"zip"
+	"gzip"
+	"timeshift"
+	"syncthing-gtk"
+	"sound-juicer"
+	"soundconverter"
+	"rxvt-unicode"
+	"qt5-image-formats-plugins"
+    "qt5-style-kvantum-themes"
+	"limageformat-plugins"
+	"ifupdown"
+	"font-manager"
+)
+
+games=(
+	"wesnot-1.18"
+	"steam"
+	"steam-devices"
+	"steam-libs"
+	"steam-libs-i386:i386"
+	"lutris"
+)
+
+
+art=(
+	"mypaint"
+	"mypaint-brushes"
+	"mypaint-data-extras"
 )
 
 install_packages() {
     local pkgs=("$@")
     local missing_pkgs=()
 
+
+	available_pkgs=()
+	for pkg in "${pkgs[@]}"; do
+		if apt-cache show "$pkg" >/dev/null 2>&1; then
+			available_pkgs+=("$pkg")
+		else
+			echo "⚠️  Package '$pkg' not found, skipping."
+		fi
+	done
+	
     # Check if each package is installed
-    for pkg in "${pkgs[@]}"; do
+    for pkg in "${available_pkgs[@]}"; do
         if ! dpkg -l | grep -q " $pkg "; then
             missing_pkgs+=("$pkg")
         fi
     done
 
-     # Install missing packages
-    if [ ${#pkgs[@]} -gt 0 ]; then
+    # Install missing packages
+    if [ ${#missing_pkgs[@]} -gt 0 ]; then
         echo "Installing missing packages: ${missing_pkgs[@]}"
         sudo apt update
         sudo apt install -y "${missing_pkgs[@]}"
@@ -254,74 +320,91 @@ install_packages() {
 }
 
 
-install_packages "${base_packages[@]}"
-install_packages "${build_essential_tools[@]}"
-install_packages "${core_terminal_tools[@]}"
-install_packages "${recommended_apps[@]}"
-install_packages "${printing_apps[@]}"
-install_packages "${multimedia_apps[@]}"
-install_packages "${utilities[@]}"
+# Cache sudo password
+sudo -v
+
+if [$? -eq 0 ]; then
+	install_packages "${base_packages[@]}"
+	install_packages "${build_essential_tools[@]}"
+	install_packages "${core_terminal_tools[@]}"
+	install_packages "${recommended_apps[@]}"
+	install_packages "${printing_apps[@]}"
+	install_packages "${multimedia_apps[@]}"
+	install_packages "${games[@]}"
+	install_packages "${art[@]}"
 
 
-# enable services
-sudo systemctl enable lightdm
-sudo systemctl enable bluetooth
-sudo systemctl enable avahi-daemon
-sudo systemctl enable acpid
-sudo systemctl enable cups
+	# enable services
+	sudo systemctl enable lightdm
+	sudo systemctl enable bluetooth
+	sudo systemctl enable avahi-daemon
+	sudo systemctl enable acpid
+	sudo systemctl enable cups
 
 
-# Install Custom Picom
-bash ./build_picom.sh
+	# Install Custom Picom
+	bash ./build_picom.sh
 
-# Install Xmonad
-bash ./install_xmonad.sh
+	# Instal Alacritty
+	bash ./install_alacritty.sh 
 
-# Install Emacs
-bash ./build_emacs.sh
+	# Install Xmonad
+	bash ./install_xmonad.sh
 
-# Install Input Remapper
-bash ./input_remapper.sh
+	# Install Emacs
+	bash ./build_emacs.sh
 
-# Install Art studio
-bash ./install_art_studio.sh
+	# Install Input Remapper
+	bash ./input_remapper.sh
 
-# Firefox
-bash ./install_firfox.sh
+	# Install Art studio
+	bash ./install_art_studio.sh
 
-# Fonts
-bash ./install_fonts.sh
+	# Firefox
+	bash ./install_firfox.sh
 
-# Printer
-bash ./printer.sh
+	# Fonts
+	bash ./install_fonts.sh
+
+	# Printer
+	bash ./printer.sh
+
+	# Fix Numphy
+	bash ./fix_numphy.sh
+
+	# Adds extra thumbnails for Krita and PSD
+	bash ./extra_thumbnails.sh 
+
+	# MPD Setup
+	bash ./mpd_setup.sh 
+
+	# Install nvidia drivers
+	bah ./instal_nvidia.sh
+
+	# Setup Rust Dev Environment
+	bash ./rust_devenv.sh 
+	# Setup Java development Environment
+	bash ./install_java_devenv.sh 
+
+	# Setup Ruby development Environment
+	bash ./ruby_devenv.sh
+
+	# Setup python development environment
+	bash ./python_devenv.sh 
+	# Flatpacks everywhere
+	bash ./install_flatpaks.sh 
+
+	# Setup XDG home directories
+	xdg-user-dirs-update
+
+	# Clone and Stow dotfiles
+    bash ./stow_dotfiles.sh
+	
+
+	# Clone and Install Keys
 
 
-# Fix Numphy
-bash ./fix_numphy.sh
-# Install nvidia drivers
+	# Add GTK theme and Icon theme
 
-# Setup Starship
-
-# Setup Java development Environment
-
-# Setup Ruby development Environment
-
-# Setup NodeJS development Environment
-
-# Setup go development environment
-
-# Setup python development environment
-
-# Flatpacks everywhere
-
-# Setup Extra Fonts
-
-# Setup XDG home directories
-xdg-user-dirs-update
-
-# Clone and Stow dotfiles
-
-
-# Add GTK theme and Icon theme
-
-sudo apt autoremove -y
+	sudo apt autoremove -y
+fi

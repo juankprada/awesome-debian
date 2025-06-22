@@ -2,4 +2,4 @@
 
 sudo apt remove rustc
 
-exec curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+exec curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y

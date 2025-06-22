@@ -68,6 +68,11 @@ do
     rm /tmp/$font.zip
 done
 
+
+
+echo "Installing Extra packaged fonts"
+tar -xzvf my_fonts.tar.gz --strip-components=1 -C $HOME/.local/share/fonts/
+
 # Update font cache
 fc-cache -f
 
