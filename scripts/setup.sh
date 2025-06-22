@@ -323,88 +323,87 @@ install_packages() {
 # Cache sudo password
 sudo -v
 
-if [$? -eq 0 ]; then
-	install_packages "${base_packages[@]}"
-	install_packages "${build_essential_tools[@]}"
-	install_packages "${core_terminal_tools[@]}"
-	install_packages "${recommended_apps[@]}"
-	install_packages "${printing_apps[@]}"
-	install_packages "${multimedia_apps[@]}"
-	install_packages "${games[@]}"
-	install_packages "${art[@]}"
+
+install_packages "${base_packages[@]}"
+install_packages "${build_essential_tools[@]}"
+install_packages "${core_terminal_tools[@]}"
+install_packages "${recommended_apps[@]}"
+install_packages "${printing_apps[@]}"
+install_packages "${multimedia_apps[@]}"
+install_packages "${games[@]}"
+install_packages "${art[@]}"
 
 
-	# enable services
-	sudo systemctl enable lightdm
-	sudo systemctl enable bluetooth
-	sudo systemctl enable avahi-daemon
-	sudo systemctl enable acpid
-	sudo systemctl enable cups
+# enable services
+sudo systemctl enable lightdm
+sudo systemctl enable bluetooth
+sudo systemctl enable avahi-daemon
+sudo systemctl enable acpid
+sudo systemctl enable cups
 
 
-	# Install Custom Picom
-	bash ./build_picom.sh
+# Install Custom Picom
+bash ./build_picom.sh
 
-	# Instal Alacritty
-	bash ./install_alacritty.sh 
+# Instal Alacritty
+bash ./install_alacritty.sh 
 
-	# Install Xmonad
-	bash ./install_xmonad.sh
+# Install Xmonad
+bash ./install_xmonad.sh
 
-	# Install Emacs
-	bash ./build_emacs.sh
+# Install Emacs
+bash ./build_emacs.sh
 
-	# Install Input Remapper
-	bash ./input_remapper.sh
+# Install Input Remapper
+bash ./input_remapper.sh
 
-	# Install Art studio
-	bash ./install_art_studio.sh
+# Install Art studio
+bash ./install_art_studio.sh
 
-	# Firefox
-	bash ./install_firfox.sh
+# Firefox
+bash ./install_firfox.sh
 
-	# Fonts
-	bash ./install_fonts.sh
+# Fonts
+bash ./install_fonts.sh
 
-	# Printer
-	bash ./printer.sh
+# Printer
+bash ./printer.sh
 
-	# Fix Numphy
-	bash ./fix_numphy.sh
+# Fix Numphy
+bash ./fix_numphy.sh
 
-	# Adds extra thumbnails for Krita and PSD
-	bash ./extra_thumbnails.sh 
+# Adds extra thumbnails for Krita and PSD
+bash ./extra_thumbnails.sh 
 
-	# MPD Setup
-	bash ./mpd_setup.sh 
+# MPD Setup
+bash ./mpd_setup.sh 
 
-	# Install nvidia drivers
-	bah ./instal_nvidia.sh
+# Install nvidia drivers
+bah ./instal_nvidia.sh
 
-	# Setup Rust Dev Environment
-	bash ./rust_devenv.sh 
-	# Setup Java development Environment
-	bash ./install_java_devenv.sh 
+# Setup Rust Dev Environment
+bash ./rust_devenv.sh 
+# Setup Java development Environment
+bash ./install_java_devenv.sh 
 
-	# Setup Ruby development Environment
-	bash ./ruby_devenv.sh
+# Setup Ruby development Environment
+bash ./ruby_devenv.sh
 
-	# Setup python development environment
-	bash ./python_devenv.sh 
-	# Flatpacks everywhere
-	bash ./install_flatpaks.sh 
+# Setup python development environment
+bash ./python_devenv.sh 
+# Flatpacks everywhere
+bash ./install_flatpaks.sh 
 
-	# Setup XDG home directories
-	xdg-user-dirs-update
+# Setup XDG home directories
+xdg-user-dirs-update
 
-	# Clone and Stow dotfiles
-    bash ./stow_dotfiles.sh
-	
-
-	# Clone and Install Keys
+# Clone and Stow dotfiles
+bash ./stow_dotfiles.sh
 
 
-	# Add GTK theme and Icon theme
+# Clone and Install Keys
 
-	sudo apt autoremove -y
-fi
+
+# Add GTK theme and Icon theme
+
+sudo apt autoremove -y
