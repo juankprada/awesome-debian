@@ -183,7 +183,6 @@ recommended_apps=(
 	"syncthing"
 	"samba"
 	"displaycal"
-	"dispcalgui"
 	"argyll"
 	"xiccd"
 	"colord-gtk-utils"
