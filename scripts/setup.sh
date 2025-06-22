@@ -166,7 +166,6 @@ core_terminal_tools=(
     "sed"
     "sshpass"
     "stow"
-    "tldr"
     "tmux"
     "xclip"
     "zenity"
