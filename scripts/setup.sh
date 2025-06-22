@@ -267,10 +267,8 @@ utilities=(
 
 games=(
 	"wesnot-1.18"
-	"steam"
+	"steam-installer"
 	"steam-devices"
-	"steam-libs"
-	"steam-libs-i386:i386"
 	"lutris"
 )
 
