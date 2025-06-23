@@ -26,18 +26,20 @@ echo "Git is installed. Continuing with the setup..."
 # TODO: Find a way to encrypt/decrypt a vault (ala Ansible Vault)
 
 
+mkdir -p $HOME/Development/
 
-git clone https://github.com/juankprada/awesome-debian ~/awesome-debian
-git clone https://github.com/juankprada/dotfiles ~/dotfiles
+git clone https://github.com/juankprada/awesome-debian $HOME/Development/awesome-debian
+
 
 clear
 
 # Make the setup.sh executable
-chmod +x ~/awesome-debian/scripts/setup.sh
+chmod +x $HOME/Development/awesome-debian/scripts/setup.sh
 
 # Run Setup script first
 echo "Running setup script..."
-bash ~/awesome-debian/scripts/setup.sh
+cd $HOME/Development/awesome-debian/
+bash ./scripts/setup.sh
 
 
 
