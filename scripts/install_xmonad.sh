@@ -12,16 +12,10 @@ git clone https://github.com/xmonad/xmonad-contrib
 # make sure haskell stack is up to date
 stack upgrade
 
-is_new_setup() {
-    if [ -d ./stack.yml ]; then
-	return 0
-    else
-	return 1
-    fi
-}
-
-if is_new_setup; then
-    stack init
+if [ -f "stack.yml" ]; then
+	echo "Stack already exists. Skipping"
+else
+	stack init
 fi
 
 stack install
