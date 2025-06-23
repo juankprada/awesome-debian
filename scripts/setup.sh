@@ -333,11 +333,8 @@ install_packages "${art[@]}"
 
 
 # enable services
-sudo systemctl enable lightdm
-sudo systemctl enable bluetooth
-sudo systemctl enable avahi-daemon
-sudo systemctl enable acpid
-sudo systemctl enable cups
+bash ./scripts/enable_services.sh
+
 
 
 # Install Custom Picom
