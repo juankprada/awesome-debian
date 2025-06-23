@@ -1,4 +1,4 @@
 ## Install
 ```bash
-curl -s 'https://github.com/juankprada/awesome-debian/raw/main/install.sh' | sudo bash
+curl -s 'https://raw.githubusercontent.com/juankprada/awesome-debian/main/install.sh' | sudo bash
 ```
