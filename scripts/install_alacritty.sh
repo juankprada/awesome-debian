@@ -7,7 +7,7 @@ command_exists() {
 }
 
 echo "Installing dependencies"
-sudo apt install cmake g++ pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
+sudo apt install -y cmake g++ pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
 
 if [ -d ~/Development/alacritty ]; then
     cd ~/Development/alacritty

@@ -20,7 +20,7 @@ Pin-Priority: 1000
 ' | sudo tee /etc/apt/preferences.d/mozilla 
 
 # Update packages and install
-sudo apt update && sudo apt install firefox
+sudo apt update && sudo apt install -y firefox
 
 # Remove Firefox-esr if exists
 sudo apt remove firefox-esr

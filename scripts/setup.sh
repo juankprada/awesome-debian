@@ -87,7 +87,6 @@ base_packages=(
 	"cron"
 	"cron-daemon-common"
 	"arc-theme"
-	"arc-kde"
 	"starship"
 )
 
@@ -319,6 +318,8 @@ install_packages() {
 sudo -v
 
 
+bash ./scripts/setup_secrets.sh
+
 install_packages "${base_packages[@]}"
 install_packages "${build_essential_tools[@]}"
 install_packages "${core_terminal_tools[@]}"
@@ -334,8 +335,6 @@ install_packages "${art[@]}"
 
 # enable services
 bash ./scripts/enable_services.sh
-
-
 
 # Install Custom Picom
 bash ./scripts/build_picom.sh
