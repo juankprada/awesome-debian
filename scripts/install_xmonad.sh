@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Install Xmonad dependencies
-sudo apt install haskell-stack libx11-dev libxft-dev libxinerama-dev libxrandr-dev libxss-dev xmobar
+sudo apt install -y haskell-stack libx11-dev libxft-dev libxinerama-dev libxrandr-dev libxss-dev xmobar
 
 # Prepare directories
 mkdir -p ~/.config/xmonad && cd ~/.config/xmonad

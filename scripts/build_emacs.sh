@@ -13,7 +13,7 @@ check_emacs_cloned() {
 
 # install build dependencies
 sudo apt build-dep emacs -y
-sudo apt install libtree-sitter-dev
+sudo apt install -y libtree-sitter-dev
 
 # Setup checkout directory
 mkdir -p $HOME/Development
@@ -44,7 +44,7 @@ sudo make install
 echo "Emacs has been built and installed successfully"
 
 # enable emacs daemon through systemd
-systemctl enable --user emacs
+#systemctl enable --user emacs
 
 
 echo "Emacs daemon has been enabled."
